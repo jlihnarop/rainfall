@@ -9,8 +9,22 @@ integer::rain(Nmax)
   do i=1,N
     print*,town(i),rain(i)
   end do
-contains
 
+  print*,'Average Rainfall=',average(rain,Nmax,N)
+  
+contains
+  real function average(R,Nmax,N)
+  integer,intent(in)::Nmax
+  integer,intent(in)::R(Nmax)
+  integer,intent(in)::N
+  integer::i,s
+    s=0
+    do i=1,N
+      s=s+R(i)
+    end do
+    average = s/real(N)
+  end function
+  
   subroutine readfile(T,R,Nmax,N)
   integer,intent(in)::Nmax
   character(20),intent(out)::T(Nmax)
